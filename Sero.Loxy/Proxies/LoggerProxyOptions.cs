@@ -7,8 +7,6 @@ using System.Text;
 
 namespace Sero.Loxy
 {
-    public delegate IEnumerable<string> CustomStateFormatter<TState>(TState state, Func<TState, Exception, string> formatter);
-
     public class LoggerProxyOptions
     {
         public string Category { get; private set; }

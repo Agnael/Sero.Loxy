@@ -21,7 +21,7 @@ namespace Sero.Loxy
         public readonly IApplicationInfoService ApplicationInfoService;
         public readonly IRequestInfoService RequestInfoService;
 
-        private IList<ISink> _sinks;
+        public IList<ISink> Sinks { get; private set; }
         
         public Loxy(IHttpContextAccessor httpContext, 
                             IApplicationInfoService appInfoService,
@@ -37,7 +37,7 @@ namespace Sero.Loxy
             HttpContext = httpContext.HttpContext;
             ApplicationInfoService = appInfoService;
             RequestInfoService = reqInfoService;
-            _sinks = loxyBuilder.Sinks.Sinks;
+            Sinks = loxyBuilder.Sinks.Sinks;
         }
 
         private LoggerProxyOptions GenerateLoggerOptions()
@@ -116,14 +116,12 @@ namespace Sero.Loxy
 
         public async Task PersistAsync()
         {
-            // TODO: Tirar algo como una NoSinksRegisteredException si no hay sinks. Ya intenté hacerlo pero al llegar al middleware la exception desaparecía y la response se generaba correctamente, obvio que sin loggear nada porque no se pudo. Medio random todo, debe tener que ver con ASP.NET Core a bajo nivel.
-
             LogLevel highestLevelRaised = LogLevel.Trace;
 
             if (EventHistory.Count > 0)
                 highestLevelRaised = EventHistory.Max(x => x.GetLogLevel());
 
-            foreach (ISink sink in _sinks)
+            foreach (ISink sink in Sinks)
             {
                 if(highestLevelRaised >= sink.MinimumLevel)
                 {

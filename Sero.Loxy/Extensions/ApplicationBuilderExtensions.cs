@@ -13,7 +13,7 @@ namespace Sero.Loxy
         /// </summary>
         public static void UseLoxy(this IApplicationBuilder app)
         {
-            app.UseMiddleware<EventLoggerMiddleware>();
+            app.UseMiddleware<LoxyMiddleware>();
         }
     }
 }

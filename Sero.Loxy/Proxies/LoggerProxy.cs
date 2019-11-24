@@ -45,12 +45,11 @@ namespace Sero.Loxy
             return true;
         }
 
-        public delegate IEnumerable<string> StateFormatter<TState>(TState state, Func<TState, Exception, string> formatter);
-
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             ProxiedEvent<TState> evt;
 
+            // TODO: Hacer que el formatter normal de alguna forma se contenga en un IStateFormatter para no tener esta distinción poronga, tal vez pueda hacer que los StateFormatters se generen en una factory para facilitarlo
             if (Options.StateFormatterOverride != null)
                 evt = new ProxiedEvent<TState>(logLevel, Options.Category, eventId.Name, state, Options.StateFormatterOverride);
             else

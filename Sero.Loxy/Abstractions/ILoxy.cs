@@ -22,5 +22,7 @@ namespace Sero.Loxy.Abstractions
         ILogger AsLogger();
         ILogger AsLogger(LoggerProxyOptions options);
         ILogger AsLogger(Action<LoggerProxyOptions> config);
+        
+        IList<ISink> Sinks { get; }
     }
 }
