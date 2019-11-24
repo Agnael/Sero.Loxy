@@ -38,11 +38,6 @@ namespace TestWeb
             ConfigureSerilog();
 
             services.AddLogging(x => x.AddSerilog());
-            
-            //services.AddSeroEventLogger(evtLogger => evtLogger.AddJsonSink(logger, sink => sink.WithJsonFormatting(Formatting.Indented)
-            //                                                                                    .WithMinimumLevel(LogLevel.Information)
-            //                                                                                    .WithExtendedLevel(LogLevel.Error))
-            //                                                    .AddJsonSink());
 
             services.AddLoxy()
                 .Sinks.AddJsonSink()
@@ -50,7 +45,8 @@ namespace TestWeb
                     .WithExtendedLevel(LogLevel.Error)
                     .WithJsonFormatting(Formatting.Indented);
 
-            var mvcbUILDER = services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

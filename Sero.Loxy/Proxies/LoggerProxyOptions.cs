@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Sero.Loxy.Abstractions;
+using Sero.Loxy.Proxies;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,17 +19,20 @@ namespace Sero.Loxy
 
         public IExceptionFormatter ExceptionFormatter { get; private set; }
 
-        public IStateFormatter StateFormatterOverride { get; private set; }
+        //public IStateFormatter StateFormatterOverride { get; private set; }
+        public IStateFormatterFactory StateFormatterFactory { get; private set; }
 
         public LoggerProxyOptions()
         {
             Category = "UNCATEGORIZED";
+            StateFormatterFactory = new ProxyStateFormatterFactory();
         }
 
         public LoggerProxyOptions(Guid loggerProviderId)
         {
             Category = "UNCATEGORIZED";
             LoggerProviderId = LoggerProviderId;
+            StateFormatterFactory = new ProxyStateFormatterFactory();
         }
 
         public LoggerProxyOptions WithLoggerProviderId(Guid loggerProviderId)
@@ -52,9 +56,9 @@ namespace Sero.Loxy
             return this;
         }
 
-        public LoggerProxyOptions WithStateFormatter(IStateFormatter customStateFormatter)
+        public LoggerProxyOptions WithStateFormatterFactory(IStateFormatterFactory stateFormatterFactory)
         {
-            StateFormatterOverride = customStateFormatter;
+            StateFormatterFactory = stateFormatterFactory;
             return this;
         }
     }

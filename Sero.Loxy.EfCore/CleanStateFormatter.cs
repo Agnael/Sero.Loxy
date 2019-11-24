@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Sero.Loxy.EfCore
 {
-    public class CleanStateFormatter : IStateFormatter
+    public class CleanStateFormatter<TState> : IStateFormatter<TState>
     {
-        public IEnumerable<string> Format<TState>(TState state)
+        public IEnumerable<string> Format(TState state)
         {
             IEnumerable<KeyValuePair<String, Object>> stateList = state as IEnumerable<KeyValuePair<String, Object>>;
             KeyValuePair<String, Object> nullKvp = default(KeyValuePair<String, Object>);

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Sero.Loxy.Abstractions
 {
-    public interface IStateFormatter
+    public interface IStateFormatter<TState>
     {
-        IEnumerable<string> Format<TState>(TState state);
+        IEnumerable<string> Format(TState state);
     }
 }
