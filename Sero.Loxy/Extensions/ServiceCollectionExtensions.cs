@@ -13,7 +13,7 @@ namespace Sero.Loxy
     {
         public static LoxyBuilder AddLoxy(this IServiceCollection services)
         {
-            services.AddApplicationInfo();
+            services.AddAppInfo();
             services.AddRequestInfo();
 
             var builder = new LoxyBuilder(services);
@@ -21,7 +21,7 @@ namespace Sero.Loxy
             services.TryAddScoped<ILoxy>(serviceProvider => 
             {
                 var httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
-                var appInfoService = serviceProvider.GetService<IApplicationInfoService>();
+                var appInfoService = serviceProvider.GetService<IAppInfoService>();
                 var requestInfoService = serviceProvider.GetService<IRequestInfoService>();
 
                 Loxy instance = new Loxy(httpContextAccessor, appInfoService, requestInfoService, builder);

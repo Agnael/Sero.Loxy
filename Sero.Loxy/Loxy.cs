@@ -18,13 +18,13 @@ namespace Sero.Loxy
     {
         public readonly List<IEvent> EventHistory;
         public readonly HttpContext HttpContext;
-        public readonly IApplicationInfoService ApplicationInfoService;
+        public readonly IAppInfoService ApplicationInfoService;
         public readonly IRequestInfoService RequestInfoService;
 
         public IList<ISink> Sinks { get; private set; }
         
         public Loxy(IHttpContextAccessor httpContext, 
-                            IApplicationInfoService appInfoService,
+                            IAppInfoService appInfoService,
                             IRequestInfoService reqInfoService,
                             LoxyBuilder loxyBuilder)
         {

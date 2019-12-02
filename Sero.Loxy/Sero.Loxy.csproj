@@ -11,13 +11,15 @@
     <RepositoryUrl>https://github.com/Agnael/Sero.Loxy</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>request logging scoped logger</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <PackageIconUrl>https://i.imgur.com/JTdoQJg.jpg</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Sero.Core" Version="1.0.7" />
+    <PackageReference Include="Sero.Core" Version="1.0.9" />
   </ItemGroup>
 
 </Project>

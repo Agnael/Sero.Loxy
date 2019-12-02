@@ -9,6 +9,8 @@ namespace Sero.Loxy.Abstractions
     {
         LogLevel GetHighestLevel();
 
+        string MachineName { get; }
+
         string AppName { get; }
 
         string AppVersion { get; }
@@ -35,10 +37,15 @@ namespace Sero.Loxy.Abstractions
         string Url { get; }
 
         /// <summary>
-        /// Requested QueryString
+        /// Request QueryString
         /// </summary>
         string QueryString { get; }
-
+        
+        /// <summary>
+        /// Request Body
+        /// </summary>
+        string RequestBody { get; }
+        
         string UserAgent { get; }
 
         string AcceptLanguage { get; }
@@ -52,11 +59,6 @@ namespace Sero.Loxy.Abstractions
         /// Gets or sets the date (UTC) of the raised event.
         /// </summary>
         DateTime Datetime { get; }
-
-        /// <summary>
-        /// Seconds passed since Jan 01 1970 (UTC).
-        /// </summary>
-        long UnixTimestamp { get; }
 
         /// <summary>
         /// Gets or sets the server process identifier.

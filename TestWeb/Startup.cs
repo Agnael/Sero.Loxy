@@ -17,7 +17,6 @@ using Newtonsoft.Json;
 using Serilog;
 using Serilog.Extensions.Logging;
 using Serilog.Filters;
-using Sero.Core;
 using Sero.Loxy;
 using Sero.Loxy.Abstractions;
 using Sero.Loxy.EfCore;

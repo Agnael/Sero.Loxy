@@ -19,6 +19,9 @@ namespace Sero.Loxy.Sinks.Json
         [JsonProperty]
         public string Type { get; set; }
 
+        [JsonProperty]
+        public DateTime DateTime { get; set; }
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Message { get; set; }
 
@@ -41,6 +44,7 @@ namespace Sero.Loxy.Sinks.Json
             Exception = evt.Exception;
             Details = evt.Details;
             _level = evt.GetLogLevel();
+            DateTime = evt.DateTime;
         }
 
         public LogLevel GetLogLevel()

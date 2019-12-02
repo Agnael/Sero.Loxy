@@ -48,7 +48,7 @@ namespace Sero.Loxy
 
         void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            IStateFormatter<TState> stateFormatter = Options.StateFormatterFactory.Create<TState>(formatter);
+            IStateFormatter<TState> stateFormatter = Options.StateFormatterFactory.Create<TState>(eventId, formatter);
             ProxiedEvent<TState> evt = new ProxiedEvent<TState>(logLevel, Options.Category, eventId.Name, state, stateFormatter);
 
             _loxy.RaiseAsync(evt).Wait();

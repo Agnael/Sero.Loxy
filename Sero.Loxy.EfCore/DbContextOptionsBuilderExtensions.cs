@@ -13,7 +13,7 @@ namespace Sero.Loxy.EfCore
             options.UseLoggerFactory(
                 loxy.AsLoggerFactory(proxy => 
                     proxy.WithCategory(logCategory)
-                         .WithStateFormatterFactory(new CleanStateFormatterFactory())
+                         .WithStateFormatterFactory(new EfStateFormatterFactory()) // EXPERIMENTAL SHIT, TO BE SURE IT WORKS YOU ARE BETTER OFF USING THE DEFAULT StateFormatter
                 )
             );
 

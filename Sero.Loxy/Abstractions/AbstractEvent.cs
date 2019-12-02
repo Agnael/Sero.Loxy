@@ -18,6 +18,7 @@ namespace Sero.Loxy.Abstractions
         public string Category { get; private set; }
         public string Type { get; private set; }
         public string Message { get; private set; }
+        public DateTime DateTime { get; protected set; }
         public IEnumerable<ExceptionInfo> Exception { get; protected set; }
         public IEnumerable<string> Details { get; protected set; }
 
@@ -46,6 +47,7 @@ namespace Sero.Loxy.Abstractions
             Level = _logLevel.ToString();
             Category = category;
             Message = message;
+            DateTime = DateTime.UtcNow;
         }
 
         public LogLevel GetLogLevel()
@@ -82,6 +84,7 @@ namespace Sero.Loxy.Abstractions
         {
             base.Prepare();
 
+            // TODO: Podría estarse usando un custom formatter que rompe, debería hacerse un try catch que si rompe el custom formatter use el default, cosa de que el loggeo nunca se interrumpa y a lo sumo se vea un log medio feo.
             if (_state != null)
                 this.Details = this.FormatState(_state);
         }

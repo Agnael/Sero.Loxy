@@ -11,6 +11,7 @@ namespace Sero.Loxy.Abstractions
         string Category { get; }
         string Message { get; }
         string Type { get; }
+        DateTime DateTime { get; }
 
         IEnumerable<string> Details { get; }
         IEnumerable<ExceptionInfo> Exception { get; }

@@ -10,13 +10,15 @@ namespace Sero.Loxy.Sinks.Json
     [JsonObject]
     internal class RequestInfoDTO : IRequestInfo
     {
+        public string Level { get; set; }
+        public string Environment { get; set; }
+        public string MachineName { get; set; }
         public string AppName { get; set; }
         public string AppVersion { get; set; }
-        public string Environment { get; set; }
-        public string Level { get; set; }
         public string Verb { get; set; }
         public string Url { get; set; }
         public string QueryString { get; set; }
+        public string RequestBody { get; set; }
         public string UserAgent { get; set; }
         public string AcceptLanguage { get; set; }
         public string RequestTraceIdentitfier { get; set; }
@@ -31,6 +33,8 @@ namespace Sero.Loxy.Sinks.Json
 
         public RequestInfoDTO(IRequestInfo req)
         {
+            this.MachineName = req.MachineName;
+            this.RequestBody = req.RequestBody;
             this.AppName = req.AppName;
             this.AppVersion = req.AppVersion;
             this.Environment = req.Environment;
@@ -42,7 +46,6 @@ namespace Sero.Loxy.Sinks.Json
             this.AcceptLanguage = req.AcceptLanguage;
             this.RequestTraceIdentitfier = req.RequestTraceIdentitfier;
             this.Datetime = req.Datetime;
-            this.UnixTimestamp = req.UnixTimestamp;
             this.IdProcess = req.IdProcess;
             this.LocalIpAddress = req.LocalIpAddress;
             this.RemoteIpAddress = req.RemoteIpAddress;

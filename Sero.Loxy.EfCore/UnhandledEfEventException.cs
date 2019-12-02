@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Sero.Loxy.EfCore
 {
-    public class NonCompressibleSqlCommandException : Exception
+    public class UnhandledEfEventException : Exception
     {
-        public NonCompressibleSqlCommandException() 
+        public UnhandledEfEventException() 
             : base("It was not possible to get enough descriptive information from this SqlCommand.")
         {
         }
