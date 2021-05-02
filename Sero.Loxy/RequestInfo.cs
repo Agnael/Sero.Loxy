@@ -23,7 +23,6 @@ namespace Sero.Loxy
         public string Url { get; private set; }
         public string QueryString { get; private set; }
         public string RequestBody { get; private set; }
-        public string UserAgent { get; set; }
         public string AcceptLanguage { get; private set; }
         public string CultureCodeSelected { get; private set; }
         public string RequestTraceIdentitfier { get; private set; }
@@ -50,7 +49,6 @@ namespace Sero.Loxy
             this.RequestBody = req.RequestBody;
             this.Verb = req.Verb;
 
-            this.UserAgent = req.UserAgentHeader;
             this.AcceptLanguage = req.AcceptLanguageHeader;
             this.RequestTraceIdentitfier = req.RequestId;
 

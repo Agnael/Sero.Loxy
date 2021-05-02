@@ -51,7 +51,7 @@ namespace Sero.Loxy
             IStateFormatter<TState> stateFormatter = Options.StateFormatterFactory.Create<TState>(eventId, formatter);
             ProxiedEvent<TState> evt = new ProxiedEvent<TState>(logLevel, Options.Category, eventId.Name, state, stateFormatter);
 
-            _loxy.RaiseAsync(evt).Wait();
+            _loxy.Raise(evt);
         }
     }
 }

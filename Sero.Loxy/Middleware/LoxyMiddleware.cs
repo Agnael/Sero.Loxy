@@ -8,6 +8,7 @@ using Sero.Loxy.Events;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,8 +18,7 @@ namespace Sero.Loxy
     {
         private ILoxy _loxy;
 
-        public LoxyMiddleware(RequestDelegate next) 
-            : base(next)
+        public LoxyMiddleware() 
         {
 
         }
@@ -39,15 +39,20 @@ namespace Sero.Loxy
             await _loxy.PersistAsync();
         }
 
-        protected override async Task OnError(HttpContext context, Exception ex)
+        protected override async Task<bool> OnErrorShouldRethrow(HttpContext context, Exception ex)
         {
             // When it's a Loxy configuration error, we should actually throw it so the developer is aware of it, 
             // because it probably won't get to be logged into any sink for him to see.
             if (ex is NoSinksRegisteredException)
                 throw ex;
 
-            await _loxy.RaiseAsync(new Event(LogLevel.Critical, "Error", "An unexpected exception was catched in the middleware phase end.", ex));
+            _loxy.Raise(new Event(LogLevel.Critical, "Loxy", "An unexpected exception was catched in the middleware phase end.", ex));
             await _loxy.PersistAsync();
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            throw new Exception("LOXY DEV MODE EXCEPTION (SEE INNER EX)", ex);
+
+            return false;
         }
     }
 }

@@ -46,8 +46,6 @@ namespace Sero.Loxy.Abstractions
         /// </summary>
         string RequestBody { get; }
         
-        string UserAgent { get; }
-
         string AcceptLanguage { get; }
 
         /// <summary>

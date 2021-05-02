@@ -8,7 +8,8 @@ namespace Sero.Loxy.Abstractions
 {
     public interface ILoxy
     {
-        Task RaiseAsync(IEvent evt);
+        void Raise(IEvent evt);
+        void Raise<T>() where T : IEvent;
         Task PersistAsync();
 
         ILoggerFactory AsLoggerFactory();

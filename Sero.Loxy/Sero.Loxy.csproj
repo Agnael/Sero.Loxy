@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Oleg Kuzmych</Authors>
     <Company>Oleg KuzmychOleg Kuzmych</Company>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/Agnael/Sero.Loxy</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>request logging scoped logger</PackageTags>
-    <Version>1.0.2</Version>
+    <Version>1.0.7</Version>
     <PackageIconUrl>https://i.imgur.com/JTdoQJg.jpg</PackageIconUrl>
   </PropertyGroup>
 
@@ -19,7 +19,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Sero.Core" Version="1.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<ProjectReference Include="..\..\Sero.Core\Sero.Core\Sero.Core.csproj" />-->
   </ItemGroup>
 
 </Project>

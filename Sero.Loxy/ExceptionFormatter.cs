@@ -9,7 +9,20 @@ namespace Sero.Loxy
         public static IEnumerable<ExceptionInfo> Format(Exception ex)
         {
             var infoList = new List<ExceptionInfo>();
-            FillExceptionInfoListRecursive(infoList, ex);
+
+            if (ex is AggregateException)
+            {
+                var innerExceptions = (ex as AggregateException).Flatten().InnerExceptions;
+                foreach (var innerException in innerExceptions)
+                {
+                    ExceptionInfo info = FormatExceptionSingle(innerException);
+                    infoList.Add(info);
+                }
+            }
+            else // Default handling
+            {
+                FillExceptionInfoListRecursive(infoList, ex);
+            }
 
             return infoList;
         }

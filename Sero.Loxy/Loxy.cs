@@ -123,7 +123,7 @@ namespace Sero.Loxy
 
             foreach (ISink sink in Sinks)
             {
-                if(highestLevelRaised >= sink.MinimumLevel)
+                if(highestLevelRaised >= sink.MinimumLevel || EventHistory.Count == 0)
                 {
                     IEnumerable<IEvent> relevantEvtList = EventHistory ;
                     bool isExtended = (short)highestLevelRaised >= (short)sink.ExtendedLevel;
@@ -143,11 +143,25 @@ namespace Sero.Loxy
             }
         }
 
-        public async Task RaiseAsync(IEvent evt)
+        public void Raise(IEvent evt)
         {
             if (evt == null) throw new ArgumentNullException(nameof(evt));
 
             EventHistory.Add(evt);
+        }
+
+        public void Raise<T>() where T : IEvent
+        {
+            try
+            {
+                IEvent evt = Activator.CreateInstance<T>();
+
+                this.Raise(evt);
+            }
+            catch(MissingMethodException ex)
+            {
+                throw new RaiseEventWithoutParameterlessConstructorException();
+            }
         }
     }
 }

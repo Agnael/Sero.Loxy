@@ -19,7 +19,6 @@ namespace Sero.Loxy.Sinks.Json
         public string Url { get; set; }
         public string QueryString { get; set; }
         public string RequestBody { get; set; }
-        public string UserAgent { get; set; }
         public string AcceptLanguage { get; set; }
         public string RequestTraceIdentitfier { get; set; }
         public DateTime Datetime { get; set; }
@@ -42,7 +41,6 @@ namespace Sero.Loxy.Sinks.Json
             this.Verb = req.Verb;
             this.Url = req.Url;
             this.QueryString = req.QueryString;
-            this.UserAgent = req.UserAgent;
             this.AcceptLanguage = req.AcceptLanguage;
             this.RequestTraceIdentitfier = req.RequestTraceIdentitfier;
             this.Datetime = req.Datetime;

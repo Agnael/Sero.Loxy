@@ -40,11 +40,11 @@ namespace TestWeb
 
             services.AddLoxy()
                 .Sinks.AddJsonSink()
-                    .WithMinimumLevel(LogLevel.Information)
+                    .WithMinimumLevel(LogLevel.Debug)
                     .WithExtendedLevel(LogLevel.Error)
                     .WithJsonFormatting(Formatting.Indented);
 
-            services.AddMvc()
+            services.AddMvc(conf => conf.EnableEndpointRouting = false)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

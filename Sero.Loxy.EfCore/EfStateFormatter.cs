@@ -28,16 +28,22 @@ namespace Sero.Loxy.EfCore
             // EF log customizations
             if (_eventId == RelationalEventId.CommandExecuted)
             {
-                details = FormattingUtils.FormatExecutedCommand<TState>(state, _defaultFormatter);
+                details = FormattingUtils.FormatCommandExecuted<TState>(state, _defaultFormatter);
+            }
+            else if(_eventId == RelationalEventId.CommandExecuting)
+            {
+                details = FormattingUtils.FormatCommandExecuting<TState>(state, _defaultFormatter);
             }
             else // It's an EF log we don't want to customize
             {
                 string formatted = _defaultFormatter(state, null);
 
                 if (!string.IsNullOrEmpty(formatted))
-                    formatted = formatted.RemoveExtraWhitespaces().Trim();
-
-                details = new string[] { formatted };
+                {
+                    details = formatted.RemoveExtraWhitespaces()
+                                        .SplitByNewLine()
+                                        .Select(x => x.Trim());
+                }
             }
 
             if (details == null)

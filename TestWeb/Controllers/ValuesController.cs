@@ -50,18 +50,22 @@ namespace TestWeb.Controllers
             User newUser = new User { Name = "Olegsinnn" };
             db.Users.Add(newUser);
             db.SaveChanges();
+
+            db.Users.Add(newUser);
+            db.SaveChanges();
+
             var users = db.Users.ToList();
 
-            //try
-            //{
-            //    throw new Exception("mierdita rota impredecible");
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("esta es una exception nueva", ex);
-            //}
+            try
+            {
+                throw new Exception("mierdita rota impredecible");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("esta es una exception nueva", ex);
+            }
 
-            await _loxy.RaiseAsync(new UserCreatedEvent(newUser));
+            _loxy.Raise(new UserCreatedEvent(newUser));
 
             return new string[] { "value1", "value2" };
         }
