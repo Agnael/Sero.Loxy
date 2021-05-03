@@ -135,8 +135,8 @@ namespace Sero.Loxy
                     // TODO: No es performannnnnnnte esta mierda, potencialmente repite el Prepare() si hay varios sinks
                     foreach (var evt in relevantEvtList)
                         evt.Prepare();
-
-                    Entry reqInfo = new Entry(ApplicationInfoService, RequestInfoService, relevantEvtList);
+                           
+                    Entry reqInfo = new Entry<>(ApplicationInfoService, RequestInfoService, relevantEvtList);
 
                     await sink.PersistAsync(reqInfo);
                 }
