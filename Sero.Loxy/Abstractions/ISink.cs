@@ -8,7 +8,7 @@ namespace Sero.Loxy.Abstractions
 {
     public interface ISink
     {
-        Task PersistAsync(IRequestInfo requestInfo);
+        Task PersistAsync(Entry requestInfo);
 
         /// <summary>
         /// Minimum LogLevel a request must have to be processed by this Sink

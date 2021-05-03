@@ -44,8 +44,9 @@ namespace TestWeb
                     .WithExtendedLevel(LogLevel.Error)
                     .WithJsonFormatting(Formatting.Indented);
 
-            services.AddMvc(conf => conf.EnableEndpointRouting = false)
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc(conf => conf.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -61,12 +62,13 @@ namespace TestWeb
 
         public void ConfigureSerilog()
         {
-            Log.Logger = new LoggerConfiguration()
-                            // IMPORTANT, clears all the extra logging messages that microsoft forces into the app:
-                            .Filter.ByExcluding(Matching.FromSource("Microsoft"))
-                            .WriteTo.Console()
-                            .MinimumLevel.Information()
-                            .CreateLogger();
+            Log.Logger = 
+                new LoggerConfiguration()
+                    // IMPORTANT, clears all the extra logging messages that microsoft forces into the app:
+                    .Filter.ByExcluding(Matching.FromSource("Microsoft"))
+                    .WriteTo.Console()
+                    .MinimumLevel.Information()
+                    .CreateLogger();
         }
     }
 }

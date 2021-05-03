@@ -25,7 +25,7 @@ namespace Sero.Loxy.Sinks.Json
             _logger = logger;
         }
 
-        public async Task PersistAsync(IRequestInfo requestInfo)
+        public async Task PersistAsync(Entry requestInfo)
         {
             var dto = new RequestInfoDTO(requestInfo);
             string jsonMessage = JsonConvert.SerializeObject(dto, _builder.JsonFormatting);

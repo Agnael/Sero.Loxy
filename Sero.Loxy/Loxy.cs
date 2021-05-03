@@ -136,7 +136,7 @@ namespace Sero.Loxy
                     foreach (var evt in relevantEvtList)
                         evt.Prepare();
 
-                    RequestInfo reqInfo = new RequestInfo(ApplicationInfoService, RequestInfoService, relevantEvtList);
+                    Entry reqInfo = new Entry(ApplicationInfoService, RequestInfoService, relevantEvtList);
 
                     await sink.PersistAsync(reqInfo);
                 }

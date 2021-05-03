@@ -8,7 +8,7 @@ using System.Text;
 namespace Sero.Loxy.Sinks.Json
 {
     [JsonObject]
-    internal class RequestInfoDTO : IRequestInfo
+    internal class RequestInfoDTO : Entry
     {
         public string Level { get; set; }
         public string Environment { get; set; }
@@ -30,7 +30,7 @@ namespace Sero.Loxy.Sinks.Json
 
         public RequestInfoDTO() { }
 
-        public RequestInfoDTO(IRequestInfo req)
+        public RequestInfoDTO(Entry req)
         {
             this.MachineName = req.MachineName;
             this.RequestBody = req.RequestBody;

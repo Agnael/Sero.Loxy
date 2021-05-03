@@ -1,0 +1,3 @@
+[submodule "subs/Sero.Core"]
+	path = subs/Sero.Core
+	url = https://github.com/Agnael/Sero.Core.git
