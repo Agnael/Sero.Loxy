@@ -48,7 +48,9 @@ namespace TestWeb
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -61,12 +63,12 @@ namespace TestWeb
 
         public void ConfigureSerilog()
         {
-            Log.Logger = new LoggerConfiguration()
-                            // IMPORTANT, clears all the extra logging messages that microsoft forces into the app:
-                            .Filter.ByExcluding(Matching.FromSource("Microsoft"))
-                            .WriteTo.Console()
-                            .MinimumLevel.Information()
-                            .CreateLogger();
+            Log.Logger = 
+                new LoggerConfiguration()
+                .Filter.ByExcluding(Matching.FromSource("Microsoft"))
+                .WriteTo.Console()
+                .MinimumLevel.Information()
+                .CreateLogger();
         }
     }
 }

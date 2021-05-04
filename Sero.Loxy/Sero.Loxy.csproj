@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--<ProjectReference Include="..\..\Sero.Core\Sero.Core\Sero.Core.csproj" />-->
+    <ProjectReference Include="..\subs\Sero.Core\Sero.Core.csproj" />
   </ItemGroup>
 
 </Project>
