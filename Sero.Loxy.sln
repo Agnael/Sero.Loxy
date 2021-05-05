@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sero.Loxy.EfCore", "Sero.Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWeb", "TestWeb\TestWeb.csproj", "{38F670A7-C8A5-4BEC-B7E2-90A88E88487C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sero.Core", "subs\Sero.Core\Sero.Core.csproj", "{B174B8E9-FD78-49BB-BD88-F8A6EE500BF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{38F670A7-C8A5-4BEC-B7E2-90A88E88487C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38F670A7-C8A5-4BEC-B7E2-90A88E88487C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38F670A7-C8A5-4BEC-B7E2-90A88E88487C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B174B8E9-FD78-49BB-BD88-F8A6EE500BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B174B8E9-FD78-49BB-BD88-F8A6EE500BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B174B8E9-FD78-49BB-BD88-F8A6EE500BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B174B8E9-FD78-49BB-BD88-F8A6EE500BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

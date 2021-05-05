@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using Sero.Loxy.Abstractions;
+﻿using Sero.Loxy.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Sero.Loxy.Sinks.Json
 {
