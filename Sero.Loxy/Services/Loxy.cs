@@ -75,12 +75,9 @@ namespace Sero.Loxy
          }
 
          // Converts all IEventCandidate to IEvent and adds them to the map
-         void ProcessCandidates(
-             IDictionary<Guid, TimestampedEventCandidate> candidateMap)
+         void ProcessCandidates(IDictionary<Guid, TimestampedEventCandidate> candidateMap)
          {
-            foreach (
-                KeyValuePair<Guid, TimestampedEventCandidate> keyedCandidate
-                in candidateMap)
+            foreach (KeyValuePair<Guid, TimestampedEventCandidate> keyedCandidate in candidateMap)
             {
                if (!keyedEventMap.ContainsKey(keyedCandidate.Key))
                {
@@ -121,7 +118,11 @@ namespace Sero.Loxy
                   ProcessCandidates(relevantKeyedCandidateMap);
                }
 
-               IEnumerable<IEvent> events = keyedEventMap.Select(x => x.Value);
+               IEnumerable<IEvent> events = 
+                  keyedEventMap
+                  .Select(x => x.Value)
+                  .OrderBy(x => x.CreationDtUtc)
+                  .ToList();
 
                IScope scope = await _scopeBuilder.Build(context, _contextConfigurators.Count, events);
 

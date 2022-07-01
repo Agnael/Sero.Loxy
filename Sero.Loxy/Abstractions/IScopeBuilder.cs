@@ -7,9 +7,6 @@ namespace Sero.Loxy
 {
     public interface IScopeBuilder
     {
-        Task<IScope> Build(
-            object context,
-            int contextConfiguratorCount,
-            IEnumerable<IEvent> events);
+        Task<IScope> Build(object context, int contextConfiguratorCount, IEnumerable<IEvent> events);
     }
 }
