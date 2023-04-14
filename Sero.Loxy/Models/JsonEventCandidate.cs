@@ -1,6 +1,7 @@
-﻿using Functional.Maybe.Json;
+﻿//using Functional.Maybe.Json;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Sero.Functional.Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ public record JsonEventCandidate<TState>(
    {
       JsonSerializerSettings = new JsonSerializerSettings();
       JsonSerializerSettings.Converters.Add(new MaybeConverter());
+      JsonSerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
    }
 
    private string GetSerialized(object obj)
@@ -34,7 +36,15 @@ public record JsonEventCandidate<TState>(
          writer.QuoteChar = '\'';
 
          JsonSerializer ser = JsonSerializer.Create(JsonSerializerSettings);
-         ser.Serialize(writer, obj);
+
+         try
+         {
+            ser.Serialize(writer, obj);
+         } 
+         catch (JsonSerializationException ex)
+         {
+            return $"[LOXY ERROR] Couldn't serialize [{obj.GetType().FullName}]: {ex.Message}";
+         }
       }
 
       return sb.ToString();

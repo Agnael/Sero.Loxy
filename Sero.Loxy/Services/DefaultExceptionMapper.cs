@@ -8,7 +8,7 @@ namespace Sero.Loxy
     public class DefaultExceptionMapper : IExceptionMapper
     {
         public static readonly string[] STACK_TRACE_LINE_SEPARATORS =
-            new string[] { "\r\n" };
+            new string[] { "\n" };
 
         public DefaultExceptionMapper()
         {
