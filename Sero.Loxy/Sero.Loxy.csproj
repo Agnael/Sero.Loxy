@@ -3,6 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<LangVersion>preview</LangVersion>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Agnael/Sero.Loxy</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Agnael/Sero.Loxy</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Title>Sero.Loxy</Title>
 	</PropertyGroup>
 
 	<ItemGroup>
