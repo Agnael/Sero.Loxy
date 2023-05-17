@@ -11,7 +11,7 @@ namespace Sero.Loxy
         Task Flush();
     }
 
-    public interface ILoxy<TContext> : ILoxy where TContext : class
+    public interface ILoxy<out TContext> : ILoxy where TContext : class
     {
         void ConfigureContext(Action<TContext> configAction);
     }
