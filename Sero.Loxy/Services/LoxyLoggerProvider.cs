@@ -6,53 +6,52 @@ using NodaTime;
 
 namespace Sero.Loxy;
 
- public class LoxyLoggerProvider : ILoggerProvider
- {
-     private readonly IHttpContextAccessor _httpContextAccessor;
-     private readonly IEnumerable<ISink> _sinks;
-     private readonly IEventMapper _eventMapper;
-     private readonly IClock _clock;
+public class LoxyLoggerProvider : ILoggerProvider
+{
+	private readonly IHttpContextAccessor _httpContextAccessor;
+	private readonly IEnumerable<ISink> _sinks;
+	private readonly IEventMapper _eventMapper;
+	private readonly IClock _clock;
 
-     public LoxyLoggerProvider(
-         IHttpContextAccessor httpContextAccessor,
-         IClock clock,
-         IEventMapper eventMapper,
-         IEnumerable<ISink> sinks)
-     {
-         _clock = clock;
-         _httpContextAccessor = httpContextAccessor;
-         _eventMapper = eventMapper;
-         _sinks = sinks;
-     }
+	public LoxyLoggerProvider(
+		IHttpContextAccessor httpContextAccessor,
+		IClock clock,
+		IEventMapper eventMapper,
+		IEnumerable<ISink> sinks)
+	{
+		_clock = clock;
+		_httpContextAccessor = httpContextAccessor;
+		_eventMapper = eventMapper;
+		_sinks = sinks;
+	}
 
-     public ILogger CreateLogger(string categoryName)
-     {
-         HttpContext currentHttpContext = _httpContextAccessor.HttpContext;
+	public ILogger CreateLogger(string categoryName)
+	{
+		HttpContext currentHttpContext = _httpContextAccessor.HttpContext;
 
-         if (currentHttpContext == null)
-         {
-             // TODO: Should this dependencies get resolved on each call or
-             // just assume they are singletons?
+		if (currentHttpContext == null)
+		{
+			// TODO: Should this dependencies get resolved on each call or
+			// just assume they are singletons?
 
-             // NOT processing an HTTP request.
-             // It may be some system logging or a JOB, which SHOULD have
-             // a scope, but TODO: how can we tell when its a JOB?
-             return new HybridLoggerProxy(
-                 categoryName, 
-                 _httpContextAccessor, 
-                 _sinks, 
-                 _eventMapper, 
-                 _clock);
-         }
-         else
-         {
-             ILoxy loxy = currentHttpContext.RequestServices.GetService<ILoxy>();
-             return new ScopedLoggerProxy(loxy, categoryName);
-         }
-     }
+			// NOT processing an HTTP request.
+			// It may be some system logging or a JOB, which SHOULD have
+			// a scope, but TODO: how can we tell when its a JOB?
+			return new HybridLoggerProxy(
+				categoryName,
+				_httpContextAccessor,
+				_sinks,
+				_eventMapper,
+				_clock);
+		}
+		else
+		{
+			return new ScopedLoggerProxy(_httpContextAccessor, categoryName);
+		}
+	}
 
-     public void Dispose()
-     {
+	public void Dispose()
+	{
 
-     }
- }
+	}
+}
